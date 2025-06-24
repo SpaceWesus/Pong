@@ -6,7 +6,6 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject ball;
     [SerializeField] private float ballForce;
-
     [SerializeField] TMP_Text countdownText;
     private bool countingDown = false;
 
@@ -14,17 +13,18 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(Countdown());
-        while (!countingDown) { }
+        while (countingDown) { }
         LaunchBall();
     }
 
     private void LaunchBall()
     {
-        ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-ballForce, ballForce));
+        ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-ballForce, ballForce), ForceMode2D.Impulse);
     }
 
     private IEnumerator Countdown()
     {
+        countingDown = true;
         countdownText.text = "3";
         yield return new WaitForSeconds(1);
         countdownText.text = "2";
@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         countdownText.text = "GO!";
         yield return new WaitForSeconds(1);
-        countingDown = true;
+        countdownText.text = "";
+        countingDown = false;
     }
 }

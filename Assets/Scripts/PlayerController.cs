@@ -5,6 +5,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float minYPos;
     [SerializeField] private float maxYPos;
 
+    void Start()
+    {
+        // Hide the cursor when playing
+        Cursor.visible = false;
+
+        //TODO: reenable cursor visibility after the match is over??? 
+    }
+
     // Update is called once per frame
     void Update()
     {
