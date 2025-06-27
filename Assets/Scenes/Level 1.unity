@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 21173867}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.3013673, y: 0.7164755, z: -0.041680586}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -647,8 +647,8 @@ Transform:
   m_GameObject: {fileID: 298182331}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.801367, y: -0.7164755, z: 0.041680586}
-  m_LocalScale: {x: 0.20521161, y: 1.0258423, z: 0}
+  m_LocalPosition: {x: -7.6, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 21173868}
@@ -738,8 +738,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcc13397df9bb4941827ecab88a091d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minYPos: -4
-  maxYPos: 4
+  minYPos: -4.5
+  maxYPos: 4.5
 --- !u!1 &318304138
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,8 +1141,8 @@ Transform:
   m_GameObject: {fileID: 514188798}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.1986327, y: -0.7164755, z: 0.041680586}
-  m_LocalScale: {x: 0.20521161, y: 1.0258423, z: 0}
+  m_LocalPosition: {x: 7.6, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 21173868}
@@ -2597,6 +2597,7 @@ GameObject:
   - component: {fileID: 2116102819}
   - component: {fileID: 2116102818}
   - component: {fileID: 2116102821}
+  - component: {fileID: 2116102822}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -2704,8 +2705,8 @@ Transform:
   m_GameObject: {fileID: 2116102817}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.3013673, y: -0.7164755, z: 0.041680586}
-  m_LocalScale: {x: 0.28787, y: 0.28787, z: 0.28787}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 21173868}
@@ -2737,6 +2738,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &2116102822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116102817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a6bcebdf7309a3499fda488a0fe40ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minX: -150
+  maxX: 150
+  minY: -150
+  MaxY: 150
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
