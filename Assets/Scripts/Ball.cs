@@ -20,12 +20,14 @@ public class Ball : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        // TODO: Add a way to make sure the ball stays within a certain DEGREE of variance from 
+        // the direction its expected to go and within a certain SPEED minimum and maximum.
+
         // Generate random values between min and max 
         randomX = Random.Range(minX, maxX);
         randomY = Random.Range(minY, MaxY);
 
         // Add random force to the ball 
         rb.AddForce(new Vector2(randomX, randomY), ForceMode2D.Force);
-        Debug.Log("BOING");
     }
 }
