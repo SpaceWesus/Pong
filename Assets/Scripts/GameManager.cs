@@ -56,7 +56,13 @@ public class GameManager : MonoBehaviour
 
     protected virtual void LaunchBall()
     {
-        ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-ballForce, ballForce), ForceMode2D.Impulse);
+        if (Random.Range(-1f, 1f) > 0f)
+        {
+            ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(ballForce, ballForce), ForceMode2D.Impulse);
+        } else {
+            ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-ballForce, ballForce), ForceMode2D.Impulse);
+        }
+
     }
 
     public virtual void PlayerScore()
