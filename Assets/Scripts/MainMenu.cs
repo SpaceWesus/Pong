@@ -1,23 +1,126 @@
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System;
 
 public class MainMenu : MonoBehaviour
 {
-    public void PlayGame()
-    {
-        // Can start with "Level 1 - BaseGame" Scene via a string reference
-        SceneManager.LoadScene("Level 1");
+    [Header("Menus")]
+    [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject levelSelect;
 
-        // Alternative LoadScene "Methodology"
-        // Will be useful when in game already and you want to move on to the next after winning the current level.
-        // Can also load the next scene in the order via the build settings in Unity (Next scene would be "Level 1")
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    [Header("Fade")]
+    [SerializeField] private Image fade;
+    [SerializeField] protected float fadeFrames;
+    [SerializeField] protected float fadeDuration;
+    private bool fadingIn = false;
+    private bool fadingOut = false;
+
+    [Header("Audio")]
+    [SerializeField] AudioClip lowBeep;
+    [SerializeField] AudioClip highBeep;
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        Cursor.visible = true;
+        audioSource = GetComponent<AudioSource>();
     }
 
+    public void LoadLevel(String level)
+    {
+        // This function takes in a string that is assigned to the OnClick action assigned to each button 
+        // on the level select Menu. 
+        audioSource.PlayOneShot(highBeep);
+        StartCoroutine(FadeOut(level));
+
+        // Example: Game Object "Button - Level 1 - Base" -> "Level 1 - BaseGame" which is the name of the first 
+        // Level/Scene of this game. 
+
+        // Each level has its own corresponding name and button that needs to be updated with the name of the level 
+        // for this to work. 
+    }
+
+    // Quits the game.
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    // Switches between the main menu and level select.
+    public void ToggleMenus()
+    {
+        if (mainMenu.activeSelf)
+        {
+            audioSource.PlayOneShot(highBeep);
+            mainMenu.SetActive(false);
+            levelSelect.SetActive(true);
+        }
+        else
+        {
+            audioSource.PlayOneShot(lowBeep);
+            levelSelect.SetActive(false);
+            mainMenu.SetActive(true);
+        }
+    }
+
+    // Instantly fades in the screen.
+    protected void FadeInInstant()
+    {
+        if (!fadingIn && !fadingOut)
+        {
+            fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, 0);
+            fade.gameObject.SetActive(false);
+        }
+    }
+
+    // Fades in the screen.
+    protected IEnumerator FadeIn()
+    {
+        if (!fadingIn && !fadingOut)
+        {
+            fadingIn = true;
+            while (fade.color.a > 0)
+            {
+                fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, fade.color.a - (1 / fadeFrames));
+                yield return new WaitForSeconds(fadeDuration / fadeFrames);
+            }
+            fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, 0);
+            fade.gameObject.SetActive(false);
+            fadingIn = false;
+        }
+    }
+
+    // Instantly fades out the screen and transitions to the given scene.
+    protected void FadeOutInstant(string sceneTransition)
+    {
+        if (!fadingIn && !fadingOut)
+        {
+            fade.gameObject.SetActive(true);
+            fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, 1);
+            if (sceneTransition != null) SceneManager.LoadScene(sceneTransition);
+        }
+    }
+
+    // Fades out the screen and transitions to the given scene.
+    protected IEnumerator FadeOut(string sceneTransition)
+    {
+        if (!fadingIn && !fadingOut)
+        {
+            fadingOut = true;
+            fade.gameObject.SetActive(true);
+            while (fade.color.a < 1)
+            {
+                fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, fade.color.a + (1 / fadeFrames));
+                yield return new WaitForSeconds(fadeDuration / fadeFrames);
+            }
+            fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, 1);
+            fadingOut = false;
+
+            if (sceneTransition != null) SceneManager.LoadScene(sceneTransition);
+        }
     }
 }

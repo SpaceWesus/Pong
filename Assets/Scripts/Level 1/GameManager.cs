@@ -6,8 +6,12 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Game Settings")]
-    [SerializeField] protected float ballForce;
+    [Header("Ball Settings")]
+    [SerializeField] protected float initialBallVelocity;
+    [SerializeField] protected float minBallLaunchNudge;
+    [SerializeField] protected float maxBallLaunchNudge;
+
+    [Header("UI Settings")]
     [SerializeField] protected string winConditionString;
     [SerializeField] protected string loseConditionString;
     [SerializeField] protected float fadeFrames;
@@ -22,7 +26,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] protected TMP_Text opponentScoreText;
     [SerializeField] protected TMP_Text winConditionText;
     [SerializeField] protected TMP_Text loseConditionText;
-    [SerializeField] Image fade;
+    [SerializeField] protected Image fade;
+
+    [Header("Audio")]
+    [SerializeField] protected AudioClip playerScoreAudio;
+    [SerializeField] protected AudioClip opponentScoreAudio;
+    [SerializeField] protected AudioClip winAudio;
+    [SerializeField] protected AudioClip loseAudio;
+    [SerializeField] protected AudioClip countdownAudio;
+    [SerializeField] protected AudioClip goAudio;
+    protected AudioSource audioSource;
 
     protected Vector2 initialBallPos;
     protected int playerScore;
@@ -36,58 +49,99 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         InitializeScores();
         UpdateWinLoseConditionText();
         StartCoroutine(FadeIn(true));
         initialBallPos = ball.transform.position;
     }
 
+    // Initializes the player and opponent scores upon level start.
     protected virtual void InitializeScores()
     {
         playerScore = 0;
         opponentScore = 0;
     }
 
+    // Updates the win and lose condition text upon level start.
     protected virtual void UpdateWinLoseConditionText()
     {
         winConditionText.text = "WIN CONDITION: " + winConditionString;
         loseConditionText.text = "LOSE CONDITION: " + loseConditionString;
     }
 
+    // Launches the ball in a semi-random direction.
     protected virtual void LaunchBall()
     {
-        if (Random.Range(-1f, 1f) > 0f)
+        // Determine which of the four diagonal directions the ball should be launched in at random.
+        int ballDirection = Mathf.RoundToInt(Random.Range(1, 4));
+        Vector2 ballVelocity;
+        switch (ballDirection)
         {
-            ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(ballForce, ballForce), ForceMode2D.Impulse);
-        } else {
-            ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(-ballForce, ballForce), ForceMode2D.Impulse);
+            case 1:
+                ballVelocity = new Vector2(initialBallVelocity, initialBallVelocity);
+                break;
+            case 2:
+                ballVelocity = new Vector2(initialBallVelocity, -initialBallVelocity);
+                break;
+            case 3:
+                ballVelocity = new Vector2(-initialBallVelocity, initialBallVelocity);
+                break;
+            case 4:
+                ballVelocity = new Vector2(-initialBallVelocity, -initialBallVelocity);
+                break;
+            default:
+                ballVelocity = new Vector2(initialBallVelocity, initialBallVelocity);
+                break;
         }
 
+        // Nudge the ball's launch angle slightly.
+        float thetaDegrees = Random.Range(minBallLaunchNudge, maxBallLaunchNudge);
+        float thetaRadians = thetaDegrees * (Mathf.PI / 180);
+        Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
+        rb.linearVelocity = new Vector2((ballVelocity.x * Mathf.Cos(thetaRadians)) - (ballVelocity.y * Mathf.Sin(thetaRadians)),
+                                        (ballVelocity.x * Mathf.Sin(thetaRadians)) + (ballVelocity.y * Mathf.Cos(thetaRadians)));
     }
 
+    // Handles player scoring.
     public virtual void PlayerScore()
     {
         FreezeBall();
         playerScore++;
         playerScoreText.text = playerScore.ToString();
         CheckWinCondition();
-        if (!playerWon) ResetBall();
+
+        // If the player didn't make the winnnig goal, reset for the next round.
+        if (!playerWon)
+        {
+            audioSource.PlayOneShot(playerScoreAudio);
+            ResetBall();
+        }
     }
 
+    // Handles opponent scoring.
     public virtual void OpponentScore()
     {
         FreezeBall();
         opponentScore++;
         opponentScoreText.text = opponentScore.ToString();
         CheckLoseCondition();
-        if (!opponentWon) ResetBall();
+
+        // If the opponent didn't make the winning goal, reset for the next round.
+        if (!opponentWon)
+        {
+            audioSource.PlayOneShot(opponentScoreAudio);
+            ResetBall();
+        }
     }
 
+    // Freezes the ball in place.
     protected virtual void FreezeBall()
     {
         ball.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
     }
 
+    // Resets the ball's position to its initial position at the start of the level.
     protected virtual void ResetBall()
     {
         FreezeBall();
@@ -95,24 +149,31 @@ public class GameManager : MonoBehaviour
         StartCoroutine(Countdown());
     }
 
+    // Checks if the win condision for this level has been met.
+    // OVERRIDE THIS FUNCTION IN AN INHERETING SCRIPT TO CHANGE THE WIN CONDITION!
     protected virtual void CheckWinCondition()
     {
         if (playerScore >= 3)
         {
             playerWon = true;
+            audioSource.PlayOneShot(winAudio);
             StartCoroutine(Win());
         }
     }
 
+    // Checks if the lose condision for this level has been met.
+    // OVERRIDE THIS FUNCTION IN AN INHERETING SCRIPT TO CHANGE THE LOSE CONDITION!
     protected virtual void CheckLoseCondition()
     {
         if (opponentScore >= 3)
         {
             opponentWon = true;
+            audioSource.PlayOneShot(loseAudio);
             StartCoroutine(Lose());
         }
     }
 
+    // Instantly fades in the screen and starts the countdown if necessary.
     protected void FadeInInstant(bool startCountdown)
     {
         fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, 0);
@@ -120,6 +181,7 @@ public class GameManager : MonoBehaviour
         if (startCountdown) StartCoroutine(Countdown());
     }
 
+    // Fades in the screen and starts the countdown if necessary.
     protected IEnumerator FadeIn(bool startCountdown)
     {
         fadingIn = true;
@@ -135,6 +197,7 @@ public class GameManager : MonoBehaviour
         if (startCountdown) StartCoroutine(Countdown());
     }
 
+    // Instantly fades out the screen and transitions to the given scene.
     protected void FadeOutInstant(string sceneTransition)
     {
         fade.gameObject.SetActive(true);
@@ -142,6 +205,7 @@ public class GameManager : MonoBehaviour
         if (sceneTransition != null) SceneManager.LoadScene(sceneTransition);
     }
 
+    // Fades out the screen and transitions to the given scene.
     protected IEnumerator FadeOut(string sceneTransition)
     {
         fadingOut = true;
@@ -157,20 +221,27 @@ public class GameManager : MonoBehaviour
         if (sceneTransition != null) SceneManager.LoadScene(sceneTransition);
     }
 
+    // Handles the countdown before the ball is launched.
     protected virtual IEnumerator Countdown()
     {
+        yield return new WaitForSeconds(1);
         gameStatusText.text = "3";
+        audioSource.PlayOneShot(countdownAudio);
         yield return new WaitForSeconds(1);
         gameStatusText.text = "2";
+        audioSource.PlayOneShot(countdownAudio);
         yield return new WaitForSeconds(1);
         gameStatusText.text = "1";
+        audioSource.PlayOneShot(countdownAudio);
         yield return new WaitForSeconds(1);
         gameStatusText.text = "GO!";
+        audioSource.PlayOneShot(goAudio);
         yield return new WaitForSeconds(1);
         gameStatusText.text = "";
         LaunchBall();
     }
 
+    // Handles the player winning.
     protected virtual IEnumerator Win()
     {
         // Show the victory text for a few seconds.
@@ -181,6 +252,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(FadeOut("Level 1"));
     }
 
+    // Handles the opponent winning.
     protected virtual IEnumerator Lose()
     {
         // Show the lose text for a few seconds.
