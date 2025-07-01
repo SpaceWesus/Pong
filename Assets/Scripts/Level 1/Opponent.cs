@@ -1,6 +1,3 @@
-using Unity.VisualScripting;
-using UnityEditor.Callbacks;
-using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
 
 public class Opponent : MonoBehaviour
