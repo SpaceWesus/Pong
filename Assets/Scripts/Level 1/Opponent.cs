@@ -2,20 +2,19 @@ using UnityEngine;
 
 public class Opponent : MonoBehaviour
 {
-
     [SerializeField] protected GameObject ball;
     [SerializeField] protected float moveSpeed;
 
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         // OPPONENT AI 1: Opponent perfectly matches ball's y position.
         // PROBLEMS:      Impossible to beat.

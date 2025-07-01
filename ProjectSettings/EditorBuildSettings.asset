@@ -9,11 +9,38 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/Main Menu/Main Menu.unity
+    path: Assets/Scenes/Main Menu.unity
     guid: 1ab4a02864e797947bfd6ff213f8bc8c
   - enabled: 1
-    path: Assets/Scenes/Level 1/Level 1.unity
+    path: Assets/Scenes/Level 1.unity
     guid: d9e065b53f7127e4bbdf7efec171b02a
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: 357bf0de309515c448cf1e322f6dcf95
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: 70ceafdc549f8b147b661f9f6811b9ca
+  - enabled: 1
+    path: Assets/Scenes/Level 4.unity
+    guid: f40449da7b5afa84a92871ca79077427
+  - enabled: 1
+    path: Assets/Scenes/Level 5.unity
+    guid: 003eec63dd9159b42b6b1099020c3326
+  - enabled: 1
+    path: Assets/Scenes/Level 6.unity
+    guid: 2ce93bb8fad65b844a66c7041251bf36
+  - enabled: 1
+    path: Assets/Scenes/Level 7.unity
+    guid: 4b74b48935a3c7742a039352d0a6f591
+  - enabled: 1
+    path: Assets/Scenes/Level 8.unity
+    guid: 60f84b4f6337f1e4082afa513fa4c0bb
+  - enabled: 1
+    path: Assets/Scenes/Level 9.unity
+    guid: 04a3a0f5c831e7d4582644cf553145e0
+  - enabled: 1
+    path: Assets/Scenes/Level 10.unity
+    guid: 168160c76d5153445a69647e2ffaf131
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 99f9c9493070a9d4c979a8fec7c5a8d3, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

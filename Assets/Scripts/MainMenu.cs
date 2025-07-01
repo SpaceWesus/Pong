@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 using System;
 
 public class MainMenu : MonoBehaviour
@@ -11,6 +12,10 @@ public class MainMenu : MonoBehaviour
     [Header("Menus")]
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject levelSelect;
+
+    [Header("Level Select")]
+    [SerializeField] TMP_Text[] levelButtons;
+    [SerializeField] string[] unlockedLevelButtonText;
 
     [Header("Fade")]
     [SerializeField] private Image fade;
@@ -28,20 +33,28 @@ public class MainMenu : MonoBehaviour
     {
         Cursor.visible = true;
         audioSource = GetComponent<AudioSource>();
+        GameData.instance.unlockedLevels[0] = true;
     }
 
-    public void LoadLevel(String level)
+    private void OnEnable()
+    {
+        UpdateLevelButtonText();
+    }
+
+    public void LoadLevel(int levelNumber)
     {
         // This function takes in a string that is assigned to the OnClick action assigned to each button 
         // on the level select Menu. 
+        if (!GameData.instance.unlockedLevels[levelNumber - 1]) return;
+
         audioSource.PlayOneShot(highBeep);
-        StartCoroutine(FadeOut(level));
+        StartCoroutine(FadeOut("Level " + levelNumber));
 
         // Example: Game Object "Button - Level 1 - Base" -> "Level 1 - BaseGame" which is the name of the first 
-        // Level/Scene of this game. 
+        // Level/Scene of this game.
 
         // Each level has its own corresponding name and button that needs to be updated with the name of the level 
-        // for this to work. 
+        // for this to work.
     }
 
     // Quits the game.
@@ -121,6 +134,14 @@ public class MainMenu : MonoBehaviour
             fadingOut = false;
 
             if (sceneTransition != null) SceneManager.LoadScene(sceneTransition);
+        }
+    }
+
+    protected void UpdateLevelButtonText()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            if (GameData.instance.unlockedLevels[i]) levelButtons[i].text = unlockedLevelButtonText[i];
         }
     }
 }

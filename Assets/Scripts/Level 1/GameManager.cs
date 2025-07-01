@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Game Settings")]
+    [SerializeField] protected int levelNumber;
+
     [Header("Ball Settings")]
     [SerializeField] protected float initialBallVelocity;
     [SerializeField] protected float minBallLaunchNudge;
@@ -46,7 +49,10 @@ public class GameManager : MonoBehaviour
     protected bool fadingIn = false;
     protected bool fadingOut = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    //--------------//
+    // MAIN METHODS //
+    //--------------//
+
     protected virtual void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -55,6 +61,15 @@ public class GameManager : MonoBehaviour
         StartCoroutine(FadeIn(true));
         initialBallPos = ball.transform.position;
     }
+
+    protected virtual void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M)) ReturnToMainMenu();
+    }
+
+    //-------------//
+    // LEVEL START //
+    //-------------//
 
     // Initializes the player and opponent scores upon level start.
     protected virtual void InitializeScores()
@@ -69,6 +84,30 @@ public class GameManager : MonoBehaviour
         winConditionText.text = "WIN CONDITION: " + winConditionString;
         loseConditionText.text = "LOSE CONDITION: " + loseConditionString;
     }
+
+    // Handles the countdown before the ball is launched.
+    protected virtual IEnumerator Countdown()
+    {
+        yield return new WaitForSeconds(1);
+        gameStatusText.text = "3";
+        audioSource.PlayOneShot(countdownAudio);
+        yield return new WaitForSeconds(1);
+        gameStatusText.text = "2";
+        audioSource.PlayOneShot(countdownAudio);
+        yield return new WaitForSeconds(1);
+        gameStatusText.text = "1";
+        audioSource.PlayOneShot(countdownAudio);
+        yield return new WaitForSeconds(1);
+        gameStatusText.text = "GO!";
+        audioSource.PlayOneShot(goAudio);
+        yield return new WaitForSeconds(1);
+        gameStatusText.text = "";
+        LaunchBall();
+    }
+
+    //-------------------//
+    // BALL MANIPULATION //
+    //-------------------//
 
     // Launches the ball in a semi-random direction.
     protected virtual void LaunchBall()
@@ -103,6 +142,24 @@ public class GameManager : MonoBehaviour
                                         (ballVelocity.x * Mathf.Sin(thetaRadians)) + (ballVelocity.y * Mathf.Cos(thetaRadians)));
     }
 
+    // Freezes the ball in place.
+    protected virtual void FreezeBall()
+    {
+        ball.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+    }
+
+    // Resets the ball's position to its initial position at the start of the level.
+    protected virtual void ResetBall()
+    {
+        FreezeBall();
+        ball.transform.position = initialBallPos;
+        StartCoroutine(Countdown());
+    }
+
+    //------------------//
+    // WINNING / LOSING //
+    //------------------//
+
     // Handles player scoring.
     public virtual void PlayerScore()
     {
@@ -135,20 +192,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Freezes the ball in place.
-    protected virtual void FreezeBall()
-    {
-        ball.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-    }
-
-    // Resets the ball's position to its initial position at the start of the level.
-    protected virtual void ResetBall()
-    {
-        FreezeBall();
-        ball.transform.position = initialBallPos;
-        StartCoroutine(Countdown());
-    }
-
     // Checks if the win condision for this level has been met.
     // OVERRIDE THIS FUNCTION IN AN INHERETING SCRIPT TO CHANGE THE WIN CONDITION!
     protected virtual void CheckWinCondition()
@@ -172,6 +215,37 @@ public class GameManager : MonoBehaviour
             StartCoroutine(Lose());
         }
     }
+
+    // Handles the player winning.
+    protected virtual IEnumerator Win()
+    {
+        // Show the victory text for a few seconds.
+        gameStatusText.text = "YOU WIN!";
+        yield return new WaitForSeconds(winTextDisplayTime);
+
+        // Update the next level.
+        if (levelNumber < 10) GameData.instance.unlockedLevels[levelNumber] = true;
+
+        // Fade out the screen and advance to the next level.
+        int nextLevel = levelNumber + 1;
+        if (levelNumber == 10) StartCoroutine(FadeOut("Main Menu"));
+        else StartCoroutine(FadeOut("Level " + nextLevel));
+    }
+
+    // Handles the opponent winning.
+    protected virtual IEnumerator Lose()
+    {
+        // Show the lose text for a few seconds.
+        gameStatusText.text = "YOU LOSE!";
+        yield return new WaitForSeconds(loseTextDisplayTime);
+
+        // Fade out the screen and reload the current scene.
+        StartCoroutine(FadeOut("Level " + levelNumber));
+    }
+
+    //--------//
+    // FADING //
+    //--------//
 
     // Instantly fades in the screen and starts the countdown if necessary.
     protected void FadeInInstant(bool startCountdown)
@@ -221,45 +295,16 @@ public class GameManager : MonoBehaviour
         if (sceneTransition != null) SceneManager.LoadScene(sceneTransition);
     }
 
-    // Handles the countdown before the ball is launched.
-    protected virtual IEnumerator Countdown()
+    //-------//
+    // OTHER //
+    //-------//
+
+    // Returns the player to the main menu as long as level completion isn't processing.
+    protected virtual void ReturnToMainMenu()
     {
-        yield return new WaitForSeconds(1);
-        gameStatusText.text = "3";
-        audioSource.PlayOneShot(countdownAudio);
-        yield return new WaitForSeconds(1);
-        gameStatusText.text = "2";
-        audioSource.PlayOneShot(countdownAudio);
-        yield return new WaitForSeconds(1);
-        gameStatusText.text = "1";
-        audioSource.PlayOneShot(countdownAudio);
-        yield return new WaitForSeconds(1);
-        gameStatusText.text = "GO!";
-        audioSource.PlayOneShot(goAudio);
-        yield return new WaitForSeconds(1);
-        gameStatusText.text = "";
-        LaunchBall();
+        if (fadingIn || fadingOut || playerWon || opponentWon) return;
+        FreezeBall();
+        StartCoroutine(FadeOut("Main Menu"));
     }
 
-    // Handles the player winning.
-    protected virtual IEnumerator Win()
-    {
-        // Show the victory text for a few seconds.
-        gameStatusText.text = "YOU WIN!";
-        yield return new WaitForSeconds(winTextDisplayTime);
-
-        // Fade out the screen and advance to the next level.
-        StartCoroutine(FadeOut("Level 1"));
-    }
-
-    // Handles the opponent winning.
-    protected virtual IEnumerator Lose()
-    {
-        // Show the lose text for a few seconds.
-        gameStatusText.text = "YOU LOSE!";
-        yield return new WaitForSeconds(loseTextDisplayTime);
-
-        // Fade out the screen and reload the current scene.
-        StartCoroutine(FadeOut("Level 1"));
-    }
 }
