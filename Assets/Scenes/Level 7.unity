@@ -299,7 +299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 157378080}
-  - component: {fileID: 157378079}
+  - component: {fileID: 157378082}
   - component: {fileID: 157378081}
   m_Layer: 0
   m_Name: Game Manager
@@ -308,41 +308,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &157378079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 157378078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa98da3e143f517469c27104feaefdf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelNumber: 7
-  initialBallVelocity: 7
-  minBallLaunchNudge: -25
-  maxBallLaunchNudge: 25
-  winConditionString: Score 3 goals.
-  loseConditionString: Opponent scores 3 goals.
-  fadeFrames: 20
-  fadeDuration: 1
-  winTextDisplayTime: 2
-  loseTextDisplayTime: 2
-  ball: {fileID: 2116102817}
-  gameStatusText: {fileID: 158746254}
-  playerScoreText: {fileID: 353289300}
-  opponentScoreText: {fileID: 318304140}
-  winConditionText: {fileID: 1138244507}
-  loseConditionText: {fileID: 1608843110}
-  fade: {fileID: 2075286320}
-  playerScoreAudio: {fileID: 8300000, guid: 2b3a34826963539478b34e18b0198285, type: 3}
-  opponentScoreAudio: {fileID: 8300000, guid: fdde6d13df9134e4f9ff8043f753e5e6, type: 3}
-  winAudio: {fileID: 8300000, guid: 1e8a4e62c64e1504e8f8c9536b8a59ed, type: 3}
-  loseAudio: {fileID: 8300000, guid: 5e5df3e1c2d62e845a4ba9eacc1d0aea, type: 3}
-  countdownAudio: {fileID: 8300000, guid: 19261678e48780c48b8d17c9fb798b17, type: 3}
-  goAudio: {fileID: 8300000, guid: f2a55783019d7614b9722afc84408d16, type: 3}
 --- !u!4 &157378080
 Transform:
   m_ObjectHideFlags: 0
@@ -352,7 +317,7 @@ Transform:
   m_GameObject: {fileID: 157378078}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9529432, y: -1.2299092, z: 3.1653495}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -455,6 +420,43 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &157378082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157378078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a996f67d329ee34f80d0f9e17000612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelNumber: 7
+  initialBallVelocity: 7
+  minBallLaunchNudge: -25
+  maxBallLaunchNudge: 25
+  winConditionString: Score # goals in # seconds.
+  loseConditionString: Run out of time.
+  fadeFrames: 20
+  fadeDuration: 1
+  winTextDisplayTime: 2
+  loseTextDisplayTime: 2
+  ball: {fileID: 2116102817}
+  gameStatusText: {fileID: 158746254}
+  playerScoreText: {fileID: 353289300}
+  opponentScoreText: {fileID: 318304140}
+  winConditionText: {fileID: 1138244507}
+  loseConditionText: {fileID: 1608843110}
+  fade: {fileID: 2075286320}
+  playerScoreAudio: {fileID: 8300000, guid: 2b3a34826963539478b34e18b0198285, type: 3}
+  opponentScoreAudio: {fileID: 8300000, guid: fdde6d13df9134e4f9ff8043f753e5e6, type: 3}
+  winAudio: {fileID: 8300000, guid: 1e8a4e62c64e1504e8f8c9536b8a59ed, type: 3}
+  loseAudio: {fileID: 8300000, guid: 5e5df3e1c2d62e845a4ba9eacc1d0aea, type: 3}
+  countdownAudio: {fileID: 8300000, guid: 19261678e48780c48b8d17c9fb798b17, type: 3}
+  goAudio: {fileID: 8300000, guid: f2a55783019d7614b9722afc84408d16, type: 3}
+  seconds: 60
+  scoreToWin: 3
 --- !u!1 &158746252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1523,7 +1525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75cdb56c9730ef48954dc7746934cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 157378079}
+  gameManager: {fileID: 157378082}
 --- !u!1 &1138244504
 GameObject:
   m_ObjectHideFlags: 0
@@ -2211,7 +2213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75cdb56c9730ef48954dc7746934cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 157378079}
+  gameManager: {fileID: 157378082}
 --- !u!1 &1645126248
 GameObject:
   m_ObjectHideFlags: 0

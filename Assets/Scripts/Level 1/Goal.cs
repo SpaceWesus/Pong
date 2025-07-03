@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
-    [SerializeField] GameManager gameManager;
+    [SerializeField] protected GameManager gameManager;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (gameObject.CompareTag("Player Goal"))
         {
