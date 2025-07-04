@@ -36,11 +36,6 @@ public class MainMenu : MonoBehaviour
         GameData.instance.unlockedLevels[0] = true;
     }
 
-    private void OnEnable()
-    {
-        UpdateLevelButtonText();
-    }
-
     public void LoadLevel(int levelNumber)
     {
         // This function takes in a string that is assigned to the OnClick action assigned to each button 
@@ -68,6 +63,7 @@ public class MainMenu : MonoBehaviour
     {
         if (mainMenu.activeSelf)
         {
+            UpdateLevelButtonText();
             audioSource.PlayOneShot(highBeep);
             mainMenu.SetActive(false);
             levelSelect.SetActive(true);
@@ -139,6 +135,7 @@ public class MainMenu : MonoBehaviour
 
     protected void UpdateLevelButtonText()
     {
+        if (GameData.instance == null) return;
         for (int i = 0; i < 10; i++)
         {
             if (GameData.instance.unlockedLevels[i]) levelButtons[i].text = unlockedLevelButtonText[i];

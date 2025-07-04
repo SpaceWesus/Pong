@@ -8,13 +8,13 @@ public class Opponent : MonoBehaviour
     protected Rigidbody2D rb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected void Start()
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
-    protected void Update()
+    protected virtual void Update()
     {
         // OPPONENT AI 1: Opponent perfectly matches ball's y position.
         // PROBLEMS:      Impossible to beat.

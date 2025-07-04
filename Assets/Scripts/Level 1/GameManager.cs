@@ -248,7 +248,7 @@ public class GameManager : MonoBehaviour
     //--------//
 
     // Instantly fades in the screen and starts the countdown if necessary.
-    protected void FadeInInstant(bool startCountdown)
+    protected virtual void FadeInInstant(bool startCountdown)
     {
         fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, 0);
         fade.gameObject.SetActive(false);
@@ -256,7 +256,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Fades in the screen and starts the countdown if necessary.
-    protected IEnumerator FadeIn(bool startCountdown)
+    protected virtual IEnumerator FadeIn(bool startCountdown)
     {
         fadingIn = true;
         while (fade.color.a > 0)
@@ -272,7 +272,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Instantly fades out the screen and transitions to the given scene.
-    protected void FadeOutInstant(string sceneTransition)
+    protected virtual void FadeOutInstant(string sceneTransition)
     {
         fade.gameObject.SetActive(true);
         fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, 1);
@@ -280,7 +280,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Fades out the screen and transitions to the given scene.
-    protected IEnumerator FadeOut(string sceneTransition)
+    protected virtual IEnumerator FadeOut(string sceneTransition)
     {
         fadingOut = true;
         fade.gameObject.SetActive(true);
