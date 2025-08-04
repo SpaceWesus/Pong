@@ -151,6 +151,7 @@ Transform:
   - {fileID: 298182333}
   - {fileID: 514188801}
   - {fileID: 2116102820}
+  - {fileID: 664527777}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &112560307
@@ -337,6 +338,7 @@ MonoBehaviour:
   winConditionText: {fileID: 1138244507}
   loseConditionText: {fileID: 1608843110}
   fade: {fileID: 2075286320}
+  spawner: {fileID: 664527778}
   playerScoreAudio: {fileID: 8300000, guid: 2b3a34826963539478b34e18b0198285, type: 3}
   opponentScoreAudio: {fileID: 8300000, guid: fdde6d13df9134e4f9ff8043f753e5e6, type: 3}
   winAudio: {fileID: 8300000, guid: 1e8a4e62c64e1504e8f8c9536b8a59ed, type: 3}
@@ -947,11 +949,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 353289298}
   m_CullTransparentMesh: 1
+--- !u!1 &442317545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3811966979220235205, guid: 1a964f8f715bd9b43bc84decf3fb402e, type: 3}
+  m_PrefabInstance: {fileID: 1526561745627321164}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &514188801 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3877421765798092811, guid: 1a964f8f715bd9b43bc84decf3fb402e, type: 3}
   m_PrefabInstance: {fileID: 1526561745627321164}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &514188806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442317545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23af78cafe778408daf8927db8f4d77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 14
+  minY: -4.2
+  maxY: 4.2
 --- !u!1 &658436812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,6 +1023,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &664527776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 664527777}
+  - component: {fileID: 664527778}
+  m_Layer: 0
+  m_Name: Ball Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &664527777
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664527776}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 21173868}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &664527778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664527776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c7ac4c0a3f345f284fc462571f11a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballPrefab: {fileID: 2116102817}
+  maxConcurrentBalls: 3
+  initialSpawnDelay: 8
+  spawnInterval: 10
+  baseBallSpeed: 6
+  minSpeedMultiplier: 0.8
+  maxSpeedMultiplier: 1.2
 --- !u!1 &681069176
 GameObject:
   m_ObjectHideFlags: 0
@@ -2434,6 +2507,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 1423026560681938262, guid: eebfdd8af9ecfb545b50820fdd446ae9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423026560681938262, guid: eebfdd8af9ecfb545b50820fdd446ae9, type: 3}
+      propertyPath: m_TagString
+      value: Ball
+      objectReference: {fileID: 0}
     - target: {fileID: 6407643104098907176, guid: eebfdd8af9ecfb545b50820fdd446ae9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2535,10 +2616,17 @@ PrefabInstance:
       propertyPath: ball
       value: 
       objectReference: {fileID: 2116102817}
+    - target: {fileID: 6512798846737490812, guid: 1a964f8f715bd9b43bc84decf3fb402e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3811966979220235205, guid: 1a964f8f715bd9b43bc84decf3fb402e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 514188806}
   m_SourcePrefab: {fileID: 100100000, guid: 1a964f8f715bd9b43bc84decf3fb402e, type: 3}
 --- !u!1001 &3650763750807641988
 PrefabInstance:
@@ -2591,6 +2679,10 @@ PrefabInstance:
     - target: {fileID: 2175887728745112227, guid: 03660e9897f27564384075dbe27b9630, type: 3}
       propertyPath: m_Name
       value: Player Paddle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377923025880205123, guid: 03660e9897f27564384075dbe27b9630, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

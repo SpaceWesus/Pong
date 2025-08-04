@@ -1755,12 +1755,12 @@ MonoBehaviour:
   unlockedLevelButtonText:
   - Level 1 - Pong
   - 'Level 2 - '
-  - 'Level 3 - '
+  - Level 3 - Gravity
   - Level 4 - Spong
   - 'Level 5 - '
   - 'Level 6 - '
   - Level 7 - Timerong
-  - 'Level 8 - '
+  - Level 8 - Coins!!
   - Level 9 - Breakong
   - 'Level 10 - '
   fade: {fileID: 420312150}
@@ -1892,7 +1892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 354cda10797ba914c9b1010e214142ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlockedLevels: 00000001000001000100
+  unlockedLevels: 00000101000001010100
 --- !u!1 &890228942
 GameObject:
   m_ObjectHideFlags: 0
@@ -2224,7 +2224,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 3 - ???
+  m_text: Level 3 - Gravity
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: adb403a542f899c4dae19a77353aea77, type: 2}
   m_sharedMaterial: {fileID: -7632869335548346643, guid: adb403a542f899c4dae19a77353aea77, type: 2}

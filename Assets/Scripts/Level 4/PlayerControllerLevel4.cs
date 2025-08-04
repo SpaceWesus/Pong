@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerControllerLevel4 : PlayerController
+public class PlayerControllerLevel4 : PlayerControllerLevel1
 {
     [SerializeField] private float spinSpeed = 100f;
     [SerializeField] private float spinDirection = 1f;

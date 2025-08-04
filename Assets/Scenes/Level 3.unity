@@ -2422,6 +2422,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6407643104098907176, guid: eebfdd8af9ecfb545b50820fdd446ae9, type: 3}
   m_PrefabInstance: {fileID: 858945735032788591}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2116102821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116102817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b29f5e119d64f455aab1c492a02b5ca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paddleBoost: 2.5
+  windStrength: 0
+  minFlipInterval: 8
+  maxFlipInterval: 15
 --- !u!1001 &858945735032788591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2430,6 +2446,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 21173868}
     m_Modifications:
+    - target: {fileID: 1087485821148507429, guid: eebfdd8af9ecfb545b50820fdd446ae9, type: 3}
+      propertyPath: m_GravityScale
+      value: 0.77
+      objectReference: {fileID: 0}
     - target: {fileID: 1423026560681938262, guid: eebfdd8af9ecfb545b50820fdd446ae9, type: 3}
       propertyPath: m_Name
       value: Ball
@@ -2477,7 +2497,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1423026560681938262, guid: eebfdd8af9ecfb545b50820fdd446ae9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2116102821}
   m_SourcePrefab: {fileID: 100100000, guid: eebfdd8af9ecfb545b50820fdd446ae9, type: 3}
 --- !u!1001 &1526561745627321164
 PrefabInstance:

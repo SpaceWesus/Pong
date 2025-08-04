@@ -1,21 +1,21 @@
 using UnityEngine;
 
-public class PlayerControllerLevel1 : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    [Header("Player Movement Bounds")]
-    [SerializeField] protected float minYPos;
-    [SerializeField] protected float maxYPos;
+    [SerializeField] private float minYPos;
+    [SerializeField] private float maxYPos;
 
-    protected virtual void Start()
+    void Start()
     {
         // Hide the cursor when playing
         Cursor.visible = false;
+
+        //TODO: reenable cursor visibility after the match is over??? 
     }
 
     // Update is called once per frame
-    protected virtual void Update()
+    void Update()
     {
-        // Update the player paddle's position to match the mouse's y position (within specified bounds).
         float yPos = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
         if (yPos < minYPos) yPos = minYPos;
         if (yPos > maxYPos) yPos = maxYPos;

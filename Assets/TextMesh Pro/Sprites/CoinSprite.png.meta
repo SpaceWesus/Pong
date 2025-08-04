@@ -1,0 +1,311 @@
+fileFormatVersion: 2
+guid: 223f208169e63496db585464bd1d30f8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8659486462362482512
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._0
+  - first:
+      213: -8045660611609236937
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._1
+  - first:
+      213: -9141975491781912444
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._2
+  - first:
+      213: -8909450001579671720
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._3
+  - first:
+      213: -7581699641956757055
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._4
+  - first:
+      213: -6336695640426122390
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._5
+  - first:
+      213: -5030477147024302479
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._6
+  - first:
+      213: 3727643474086201986
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._7
+  - first:
+      213: 4318809338447212877
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._8
+  - first:
+      213: -5377604514055795926
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._9
+  - first:
+      213: 603969561522057907
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._10
+  - first:
+      213: 1406160276574870695
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._11
+  - first:
+      213: -4032000310089278744
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._12
+  - first:
+      213: 4579234847059527129
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._13
+  - first:
+      213: -8475275161148475496
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._14
+  - first:
+      213: 8689424371733563637
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._15
+  - first:
+      213: -2361708775925319058
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._16
+  - first:
+      213: -7761779864963420407
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._17
+  - first:
+      213: -2655615186634599588
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._18
+  - first:
+      213: -5052655890495442755
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._19
+  - first:
+      213: -8171936727699142901
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._20
+  - first:
+      213: 8069165451976438054
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._21
+  - first:
+      213: -6088323185200288937
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._22
+  - first:
+      213: -2498787254548284634
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._23
+  - first:
+      213: 7154962110162948348
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._24
+  - first:
+      213: 7221135834312622740
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._25
+  - first:
+      213: -9143811179703998797
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._26
+  - first:
+      213: -9173781492141298993
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._27
+  - first:
+      213: -8970092739279953687
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._28
+  - first:
+      213: 2059129706994477105
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._29
+  - first:
+      213: -1436165271898373231
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._30
+  - first:
+      213: 6565565669012921372
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._31
+  - first:
+      213: 5977425947705887687
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._32
+  - first:
+      213: 4467812649036884803
+    second: ChatGPT Image 14 jul 2025, 04_48_13 p.m._33
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CoinSprite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3808ce817d9fc40c1b99d2b29b650ced
+      internalID: 647517620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoinSprite_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7962669a1d4444f02a4f5efd3a138ba1
+      internalID: -1454553485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoinSprite_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 889ce658a61154e5aa96eb6bbfb6f811
+      internalID: 1722510219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoinSprite_3
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22f39c49d400a47a784cb035f8cedc79
+      internalID: -1506684013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 908be686017594329afe7fd7b6d63e0b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      CoinSprite_0: 647517620
+      CoinSprite_1: -1454553485
+      CoinSprite_2: 1722510219
+      CoinSprite_3: -1506684013
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

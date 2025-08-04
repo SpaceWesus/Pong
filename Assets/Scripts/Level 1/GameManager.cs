@@ -23,13 +23,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] protected float loseTextDisplayTime;
 
     [Header("Object References")]
-    [SerializeField] protected GameObject ball;
+    [SerializeField] protected GameObject ball;            // main ball reference
     [SerializeField] protected TMP_Text gameStatusText;
     [SerializeField] protected TMP_Text playerScoreText;
     [SerializeField] protected TMP_Text opponentScoreText;
     [SerializeField] protected TMP_Text winConditionText;
     [SerializeField] protected TMP_Text loseConditionText;
     [SerializeField] protected Image fade;
+
+    [Header("Multi-Ball Support")]
+    [Tooltip("Drag in the BallSpawner in your Level 6 scene")]
+    [SerializeField] protected BallSpawner spawner;
 
     [Header("Audio")]
     [SerializeField] protected AudioClip playerScoreAudio;
@@ -56,6 +60,9 @@ public class GameManager : MonoBehaviour
     protected virtual void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        // disable extra‐ball spawns until after the countdown
+        if (spawner != null) spawner.enabled = false;
+
         InitializeScores();
         UpdateWinLoseConditionText();
         StartCoroutine(FadeIn(true));
@@ -103,6 +110,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         gameStatusText.text = "";
         LaunchBall();
+
+        // re-enable extra‐ball spawns now that the main ball is in play
+        if (spawner != null) spawner.enabled = true;
     }
 
     //-------------------//
@@ -138,20 +148,33 @@ public class GameManager : MonoBehaviour
         float thetaDegrees = Random.Range(minBallLaunchNudge, maxBallLaunchNudge);
         float thetaRadians = thetaDegrees * (Mathf.PI / 180);
         Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
-        rb.linearVelocity = new Vector2((ballVelocity.x * Mathf.Cos(thetaRadians)) - (ballVelocity.y * Mathf.Sin(thetaRadians)),
-                                        (ballVelocity.x * Mathf.Sin(thetaRadians)) + (ballVelocity.y * Mathf.Cos(thetaRadians)));
+        rb.linearVelocity = new Vector2(
+            (ballVelocity.x * Mathf.Cos(thetaRadians)) - (ballVelocity.y * Mathf.Sin(thetaRadians)),
+            (ballVelocity.x * Mathf.Sin(thetaRadians)) + (ballVelocity.y * Mathf.Cos(thetaRadians))
+        );
     }
 
-    // Freezes the ball in place.
+    // Freezes all balls and disables the spawner.
     protected virtual void FreezeBall()
     {
-        ball.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+        if (spawner != null) spawner.enabled = false;
+        foreach (var b in FindObjectsOfType<Ball>())
+            b.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+    }
+
+    // Destroys all extra balls (leaves only the main one).
+    protected void DestroyExtraBalls()
+    {
+        foreach (var b in FindObjectsOfType<Ball>())
+            if (b.gameObject != ball)
+                Destroy(b.gameObject);
     }
 
     // Resets the ball's position to its initial position at the start of the level.
     protected virtual void ResetBall()
     {
         FreezeBall();
+        DestroyExtraBalls();
         ball.transform.position = initialBallPos;
         StartCoroutine(Countdown());
     }
@@ -164,11 +187,12 @@ public class GameManager : MonoBehaviour
     public virtual void PlayerScore()
     {
         FreezeBall();
+        DestroyExtraBalls();
         playerScore++;
         playerScoreText.text = playerScore.ToString();
         CheckWinCondition();
 
-        // If the player didn't make the winnnig goal, reset for the next round.
+        // If the player didn't make the winning goal, reset for the next round.
         if (!playerWon)
         {
             audioSource.PlayOneShot(playerScoreAudio);
@@ -180,6 +204,7 @@ public class GameManager : MonoBehaviour
     public virtual void OpponentScore()
     {
         FreezeBall();
+        DestroyExtraBalls();
         opponentScore++;
         opponentScoreText.text = opponentScore.ToString();
         CheckLoseCondition();
@@ -192,8 +217,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Checks if the win condision for this level has been met.
-    // OVERRIDE THIS FUNCTION IN AN INHERETING SCRIPT TO CHANGE THE WIN CONDITION!
+    // Checks if the win condition for this level has been met.
+    // OVERRIDE THIS FUNCTION IN AN INHERITING SCRIPT TO CHANGE THE WIN CONDITION!
     protected virtual void CheckWinCondition()
     {
         if (playerScore >= 3)
@@ -204,8 +229,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Checks if the lose condision for this level has been met.
-    // OVERRIDE THIS FUNCTION IN AN INHERETING SCRIPT TO CHANGE THE LOSE CONDITION!
+    // Checks if the lose condition for this level has been met.
+    // OVERRIDE THIS FUNCTION IN AN INHERITING SCRIPT TO CHANGE THE LOSE CONDITION!
     protected virtual void CheckLoseCondition()
     {
         if (opponentScore >= 3)
@@ -271,14 +296,6 @@ public class GameManager : MonoBehaviour
         if (startCountdown) StartCoroutine(Countdown());
     }
 
-    // Instantly fades out the screen and transitions to the given scene.
-    protected virtual void FadeOutInstant(string sceneTransition)
-    {
-        fade.gameObject.SetActive(true);
-        fade.color = new Color(fade.color.r, fade.color.g, fade.color.b, 1);
-        if (sceneTransition != null) SceneManager.LoadScene(sceneTransition);
-    }
-
     // Fades out the screen and transitions to the given scene.
     protected virtual IEnumerator FadeOut(string sceneTransition)
     {
@@ -306,5 +323,4 @@ public class GameManager : MonoBehaviour
         FreezeBall();
         StartCoroutine(FadeOut("Main Menu"));
     }
-
 }
