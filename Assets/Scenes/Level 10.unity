@@ -300,6 +300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 157378080}
   - component: {fileID: 157378079}
+  - component: {fileID: 157378082}
   - component: {fileID: 157378081}
   m_Layer: 0
   m_Name: Game Manager
@@ -455,6 +456,41 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &157378082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157378078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8c7361a0a6cee40bc3ca6809467ca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelNumber: 10
+  initialBallVelocity: 7
+  minBallLaunchNudge: -25
+  maxBallLaunchNudge: 25
+  winConditionString: 
+  loseConditionString: 
+  fadeFrames: 0
+  fadeDuration: 0
+  winTextDisplayTime: 0
+  loseTextDisplayTime: 0
+  ball: {fileID: 0}
+  gameStatusText: {fileID: 0}
+  playerScoreText: {fileID: 0}
+  opponentScoreText: {fileID: 0}
+  winConditionText: {fileID: 0}
+  loseConditionText: {fileID: 0}
+  fade: {fileID: 0}
+  playerScoreAudio: {fileID: 8300000, guid: 2b3a34826963539478b34e18b0198285, type: 3}
+  opponentScoreAudio: {fileID: 8300000, guid: fdde6d13df9134e4f9ff8043f753e5e6, type: 3}
+  winAudio: {fileID: 8300000, guid: 1e8a4e62c64e1504e8f8c9536b8a59ed, type: 3}
+  loseAudio: {fileID: 8300000, guid: 5e5df3e1c2d62e845a4ba9eacc1d0aea, type: 3}
+  countdownAudio: {fileID: 8300000, guid: 19261678e48780c48b8d17c9fb798b17, type: 3}
+  goAudio: {fileID: 8300000, guid: f2a55783019d7614b9722afc84408d16, type: 3}
 --- !u!1 &158746252
 GameObject:
   m_ObjectHideFlags: 0
@@ -2354,7 +2390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2075286320
 MonoBehaviour:
   m_ObjectHideFlags: 0
