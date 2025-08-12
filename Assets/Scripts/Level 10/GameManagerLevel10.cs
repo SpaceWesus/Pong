@@ -23,7 +23,7 @@ public class GameManagerLevel10 : MonoBehaviour
     [SerializeField] protected float loseTextDisplayTime;
 
     [Header("Object References")]
-    [SerializeField] protected GameObject ball;
+    [SerializeField] protected GameObject ballPrefab;
     [SerializeField] protected TMP_Text gameStatusText;
     [SerializeField] protected TMP_Text playerScoreText;
     [SerializeField] protected TMP_Text opponentScoreText;
@@ -40,7 +40,6 @@ public class GameManagerLevel10 : MonoBehaviour
     [SerializeField] protected AudioClip goAudio;
     protected AudioSource audioSource;
 
-    protected Vector2 initialBallPos;
     protected int playerScore;
     protected int opponentScore;
     protected bool playerWon = false;
@@ -59,7 +58,6 @@ public class GameManagerLevel10 : MonoBehaviour
         InitializeScores();
         UpdateWinLoseConditionText();
         StartCoroutine(FadeIn(true));
-        initialBallPos = ball.transform.position;
     }
 
     protected virtual void Update()
@@ -102,14 +100,17 @@ public class GameManagerLevel10 : MonoBehaviour
         audioSource.PlayOneShot(goAudio);
         yield return new WaitForSeconds(1);
         gameStatusText.text = "";
-        LaunchBall();
+        // LaunchBall();
     }
+
+    /*
 
     //-------------------//
     // BALL MANIPULATION //
     //-------------------//
 
     // Launches the ball in a semi-random direction.
+
     protected virtual void LaunchBall()
     {
         // Determine which of the four diagonal directions the ball should be launched in at random.
@@ -141,13 +142,14 @@ public class GameManagerLevel10 : MonoBehaviour
         rb.linearVelocity = new Vector2((ballVelocity.x * Mathf.Cos(thetaRadians)) - (ballVelocity.y * Mathf.Sin(thetaRadians)),
                                         (ballVelocity.x * Mathf.Sin(thetaRadians)) + (ballVelocity.y * Mathf.Cos(thetaRadians)));
     }
+    
 
     // Freezes the ball in place.
     protected virtual void FreezeBall()
     {
         ball.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
     }
-
+    
     // Resets the ball's position to its initial position at the start of the level.
     protected virtual void ResetBall()
     {
@@ -155,6 +157,7 @@ public class GameManagerLevel10 : MonoBehaviour
         ball.transform.position = initialBallPos;
         StartCoroutine(Countdown());
     }
+    */
 
     //------------------//
     // WINNING / LOSING //
@@ -163,7 +166,7 @@ public class GameManagerLevel10 : MonoBehaviour
     // Handles player scoring.
     public virtual void PlayerScore()
     {
-        FreezeBall();
+        //FreezeBall();
         playerScore++;
         playerScoreText.text = playerScore.ToString();
         CheckWinCondition();
@@ -172,14 +175,14 @@ public class GameManagerLevel10 : MonoBehaviour
         if (!playerWon)
         {
             audioSource.PlayOneShot(playerScoreAudio);
-            ResetBall();
+            //ResetBall();
         }
     }
 
     // Handles opponent scoring.
     public virtual void OpponentScore()
     {
-        FreezeBall();
+        //FreezeBall();
         opponentScore++;
         opponentScoreText.text = opponentScore.ToString();
         CheckLoseCondition();
@@ -188,7 +191,7 @@ public class GameManagerLevel10 : MonoBehaviour
         if (!opponentWon)
         {
             audioSource.PlayOneShot(opponentScoreAudio);
-            ResetBall();
+            //ResetBall();
         }
     }
 
@@ -204,7 +207,7 @@ public class GameManagerLevel10 : MonoBehaviour
         }
     }
 
-    // Checks if the lose condision for this level has been met.
+    // Checks if the lose condition for this level has been met.
     // OVERRIDE THIS FUNCTION IN AN INHERETING SCRIPT TO CHANGE THE LOSE CONDITION!
     protected virtual void CheckLoseCondition()
     {
@@ -303,7 +306,7 @@ public class GameManagerLevel10 : MonoBehaviour
     protected virtual void ReturnToMainMenu()
     {
         if (fadingIn || fadingOut || playerWon || opponentWon) return;
-        FreezeBall();
+        //FreezeBall();
         StartCoroutine(FadeOut("Main Menu"));
     }
 

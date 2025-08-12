@@ -472,19 +472,19 @@ MonoBehaviour:
   initialBallVelocity: 7
   minBallLaunchNudge: -25
   maxBallLaunchNudge: 25
-  winConditionString: 
-  loseConditionString: 
-  fadeFrames: 0
-  fadeDuration: 0
-  winTextDisplayTime: 0
-  loseTextDisplayTime: 0
-  ball: {fileID: 0}
-  gameStatusText: {fileID: 0}
-  playerScoreText: {fileID: 0}
-  opponentScoreText: {fileID: 0}
-  winConditionText: {fileID: 0}
-  loseConditionText: {fileID: 0}
-  fade: {fileID: 0}
+  winConditionString: Score 3 goals.
+  loseConditionString: Opponent scores 3 goals.
+  fadeFrames: 20
+  fadeDuration: 1
+  winTextDisplayTime: 2
+  loseTextDisplayTime: 2
+  ballPrefab: {fileID: 1423026560681938262, guid: eebfdd8af9ecfb545b50820fdd446ae9, type: 3}
+  gameStatusText: {fileID: 158746254}
+  playerScoreText: {fileID: 353289300}
+  opponentScoreText: {fileID: 318304140}
+  winConditionText: {fileID: 1138244507}
+  loseConditionText: {fileID: 1608843110}
+  fade: {fileID: 2075286320}
   playerScoreAudio: {fileID: 8300000, guid: 2b3a34826963539478b34e18b0198285, type: 3}
   opponentScoreAudio: {fileID: 8300000, guid: fdde6d13df9134e4f9ff8043f753e5e6, type: 3}
   winAudio: {fileID: 8300000, guid: 1e8a4e62c64e1504e8f8c9536b8a59ed, type: 3}
