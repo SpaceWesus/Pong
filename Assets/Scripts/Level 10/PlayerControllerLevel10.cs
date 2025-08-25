@@ -39,24 +39,29 @@ public class PlayerControllerLevel10 : PlayerController
 
         if (Input.GetMouseButtonDown(0) && balls.Length < maxNumOfBalls)
         {
-            // 1. Instantiate the ball at the paddle's position (offset to the right)
-            Vector3 spawnPos = transform.position + Vector3.right * 2f;
-            GameObject newBall = Instantiate(ballPrefab, spawnPos, Quaternion.identity, ActiveBalls.transform);
+            if (balls.Length < maxNumOfBalls)
+            {
+                // 1. Instantiate the ball at the paddle's position (offset to the right)
+                Vector3 spawnPos = transform.position + Vector3.right * 2f;
+                GameObject newBall = Instantiate(ballPrefab, spawnPos, Quaternion.identity, ActiveBalls.transform);
 
-            // 2. Get the aiming direction (replace this with your reticle's direction if you have one)
-            // Example: oscillate angle between -20 and +20 degrees
-            float angle = Mathf.Sin(Time.time * 2f) * 20f; // oscillates between -20 and +20
-            Vector2 shootDir = Quaternion.Euler(0, 0, angle) * Vector2.right;
+                // 2. Pick a random angle within a 45-degree cone to the right
+                float angle = Random.Range(-22.5f, 22.5f);
+                Vector2 shootDir = Quaternion.Euler(0, 0, angle) * Vector2.right;
 
-            // 3. Add force to the ball
-            Rigidbody2D rb = newBall.GetComponent<Rigidbody2D>();
-            float shootForce = 10f; // Adjust as needed
-            rb.AddForce(shootDir.normalized * shootForce, ForceMode2D.Impulse);
+                // 3. Add force to the ball
+                Rigidbody2D rb = newBall.GetComponent<Rigidbody2D>();
+                float shootForce = 10f; // Adjust as needed
+                rb.AddForce(shootDir.normalized * shootForce, ForceMode2D.Impulse);
 
-            // Update UI
-            currentBallCountText.text = "Active Balls: " + (balls.Length + 1).ToString();
+                // Update UI
+                //currentBallCountText.text = "Active Balls: " + (balls.Length + 1).ToString();
+            }
+
+            else CantShoot();
+            
         }
-        else CantShoot();
+
     }
 
     private void CantShoot()
