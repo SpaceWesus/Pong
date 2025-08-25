@@ -139,6 +139,7 @@ public class MainMenu : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             if (GameData.instance.unlockedLevels[i]) levelButtons[i].text = unlockedLevelButtonText[i];
+            else levelButtons[i].text = "???";
         }
     }
 }
