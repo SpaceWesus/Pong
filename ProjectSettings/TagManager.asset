@@ -8,6 +8,7 @@ TagManager:
   - Opponent Goal
   - Ball
   - Coin
+  - Paddle
   layers:
   - Default
   - TransparentFX

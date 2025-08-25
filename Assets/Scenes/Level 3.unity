@@ -337,6 +337,7 @@ MonoBehaviour:
   winConditionText: {fileID: 1138244507}
   loseConditionText: {fileID: 1608843110}
   fade: {fileID: 2075286320}
+  spawner: {fileID: 0}
   playerScoreAudio: {fileID: 8300000, guid: 2b3a34826963539478b34e18b0198285, type: 3}
   opponentScoreAudio: {fileID: 8300000, guid: fdde6d13df9134e4f9ff8043f753e5e6, type: 3}
   winAudio: {fileID: 8300000, guid: 1e8a4e62c64e1504e8f8c9536b8a59ed, type: 3}
@@ -2514,6 +2515,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Opponent Paddle
       objectReference: {fileID: 0}
+    - target: {fileID: 3811966979220235205, guid: 1a964f8f715bd9b43bc84decf3fb402e, type: 3}
+      propertyPath: m_TagString
+      value: Paddle
+      objectReference: {fileID: 0}
     - target: {fileID: 3877421765798092811, guid: 1a964f8f715bd9b43bc84decf3fb402e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.6
@@ -2614,6 +2619,10 @@ PrefabInstance:
     - target: {fileID: 2175887728745112227, guid: 03660e9897f27564384075dbe27b9630, type: 3}
       propertyPath: m_Name
       value: Player Paddle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2175887728745112227, guid: 03660e9897f27564384075dbe27b9630, type: 3}
+      propertyPath: m_TagString
+      value: Paddle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

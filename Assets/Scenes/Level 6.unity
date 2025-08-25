@@ -1069,8 +1069,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 2116102817}
   maxConcurrentBalls: 3
-  initialSpawnDelay: 8
-  spawnInterval: 10
+  initialSpawnDelay: 5
+  spawnInterval: 3
   baseBallSpeed: 6
   minSpeedMultiplier: 0.8
   maxSpeedMultiplier: 1.2
