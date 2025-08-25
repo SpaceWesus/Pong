@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerControllerLevel5 : PlayerController
+public class PlayerControllerLevel5 : PlayerControllerLevel1
 {
     [SerializeField] protected float minXPos;
     [SerializeField] protected float maxXPos;

@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 
 
-public class PlayerControllerLevel10 : PlayerController
+public class PlayerControllerLevel10 : PlayerControllerLevel1
 {
 
     [Header("Level 10 References")]
