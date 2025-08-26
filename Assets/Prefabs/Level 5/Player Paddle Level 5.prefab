@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2175887728745112227, guid: 03660e9897f27564384075dbe27b9630, type: 3}
       propertyPath: m_Name
-      value: Player Paddle Variant
+      value: Player Paddle Level 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

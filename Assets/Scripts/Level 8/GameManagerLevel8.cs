@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class CoinManager : GameManager
+public class GameManagerLevel8 : GameManager
 {
     [Header("Coin UI")]
     [SerializeField] private TMP_Text coinText;
@@ -26,10 +26,10 @@ public class CoinManager : GameManager
         // Spawn coins once at level start
         if (coinSpawner != null)
         {
-            coinSpawner.SpawnCoins();
+            int spawnedCoins = coinSpawner.SpawnCoins();
             
             // Calculate target based on spawner settings
-            coinTarget = coinSpawner.columns * coinSpawner.rows;
+            coinTarget = spawnedCoins;
             
             // DOUBLE CHECK: Count actual coins spawned in the scene
             GameObject[] actualCoins = GameObject.FindGameObjectsWithTag("Coin");
@@ -221,11 +221,10 @@ public class CoinManager : GameManager
         // 4) Respawn all coins
         if (coinSpawner != null)
         {
-            coinSpawner.SpawnCoins();
+            int spawnedCoins = coinSpawner.SpawnCoins();
             
             // Recount coins after spawning
-            GameObject[] newCoins = GameObject.FindGameObjectsWithTag("Coin");
-            coinTarget = newCoins.Length; // Use actual count
+            coinTarget = spawnedCoins; // Use actual count
             Debug.Log($"Respawned {coinTarget} coins");
         }
         

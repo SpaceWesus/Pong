@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class Ball : MonoBehaviour
+public class BallLevel3 : MonoBehaviour
 {
     [Header("Angle Nudge on Bounce")]
     [SerializeField] protected float minAngleNudge;

@@ -158,14 +158,14 @@ public class GameManager : MonoBehaviour
     protected virtual void FreezeBall()
     {
         if (spawner != null) spawner.enabled = false;
-        foreach (var b in FindObjectsOfType<Ball>())
+        foreach (var b in FindObjectsByType<BallLevel3>(FindObjectsSortMode.None))
             b.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
     }
 
     // Destroys all extra balls (leaves only the main one).
     protected void DestroyExtraBalls()
     {
-        foreach (var b in FindObjectsOfType<Ball>())
+        foreach (var b in FindObjectsByType<BallLevel3>(FindObjectsSortMode.None))
             if (b.gameObject != ball)
                 Destroy(b.gameObject);
     }

@@ -6,7 +6,7 @@ public class CoinSpawner : MonoBehaviour
     public GameObject coinPrefab;
 
     [Tooltip("How many columns of coins")]
-    public int columns = 5;
+    public int columns = 2;
 
     [Tooltip("How many rows of coins")]
     public int rows = 2;
@@ -20,14 +20,14 @@ public class CoinSpawner : MonoBehaviour
     /// <summary>
     /// Clears any existing Coin instances in the scene and lays out a columns×rows grid.
     /// </summary>
-    public void SpawnCoins()
+    public int SpawnCoins()
     {
         Debug.Log($"[CoinSpawner] SpawnCoins called - spawning {columns}x{rows} = {columns * rows} coins");
         
         // 1) Destroy all old coins
         GameObject[] oldCoins = GameObject.FindGameObjectsWithTag("Coin");
         Debug.Log($"[CoinSpawner] Destroying {oldCoins.Length} existing coins");
-        foreach (var c in FindObjectsOfType<Coin>())
+        foreach (var c in FindObjectsByType<Coin>(FindObjectsSortMode.None))
             Destroy(c.gameObject);
 
         // 2) Figure out where to start so the grid is centered
@@ -49,6 +49,8 @@ public class CoinSpawner : MonoBehaviour
         }
         
         Debug.Log($"[CoinSpawner] Finished spawning {spawnedCount} coins");
+
+        return spawnedCount;
     }
 
     // Visualize the spawn area in the Scene view

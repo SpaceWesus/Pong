@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class BallLevel4 : Ball
+public class BallLevel4 : BallLevel3
 {
     [Header("Spinning")]
     [SerializeField] private float spinSpeed;

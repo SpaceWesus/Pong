@@ -29,7 +29,7 @@ public class Coin : MonoBehaviour
             return;
         }
 
-        var cm = FindObjectOfType<CoinManager>();
+        var cm = FindFirstObjectByType<GameManagerLevel8>();
         if (cm != null)
         {
             cm.CollectCoin();

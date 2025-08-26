@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3811966979220235205, guid: 1a964f8f715bd9b43bc84decf3fb402e, type: 3}
       propertyPath: m_Name
-      value: Opponent Paddle Variant
+      value: Opponent Paddle Level 5
       objectReference: {fileID: 0}
     - target: {fileID: 3877421765798092811, guid: 1a964f8f715bd9b43bc84decf3fb402e, type: 3}
       propertyPath: m_LocalPosition.x
