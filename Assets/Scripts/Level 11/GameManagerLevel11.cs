@@ -21,4 +21,12 @@ public class GameManagerLevel11 : GameManager
         gameStatusText.text = "";
         //  removed the LaunchBall() call that was causing an issue.
     }
+
+    protected override IEnumerator Win()
+    {
+        gameStatusText.text = "YOU WIN!";
+        yield return new WaitForSeconds(winTextDisplayTime);
+
+        StartCoroutine(FadeOut("Main Menu"));
+    }
 }
